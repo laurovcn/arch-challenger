@@ -25,7 +25,7 @@ export const findOne = async (request: Request, response: Response) => {
         }
         if (media <= 4 || media < 6 ) {
           return response.json({Message: 'Aluno em recuperação!'})
-        }
+        } 
           return response.json({Message: 'Aluno aprovado!'})
       }
         return response.json({Message: 'Aluno não cadastrado ou sem notas!'})
