@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { studentsRoute } from './students/students.routes';
-
+import { notesRouter } from './notes/notes.routes';
+import { studentsRouter } from './students/students.routes';
 
 const app = express()
 
@@ -12,4 +12,5 @@ router.get('/', async (request: Request, response: Response) => {
   response.json('Welcome to arch Project')
 })
 
-router.use('/students', studentsRoute)
+router.use('/students', studentsRouter)
+router.use('/notes', notesRouter)
