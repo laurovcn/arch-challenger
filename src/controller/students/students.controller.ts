@@ -6,7 +6,7 @@ import { logService } from '../../service/log.service';
 
   const prisma = new PrismaClient()
 
-  export const findAll = async (request: Request, response: Response) => {
+export const findAll = async (request: Request, response: Response) => {
 
     try {
 
@@ -36,7 +36,7 @@ import { logService } from '../../service/log.service';
     }
 }
 
-  export const create = async (request: Request, response: Response) => { 
+export const create = async (request: Request, response: Response) => { 
 
     const data: StudentsInterface = request.body    
     
