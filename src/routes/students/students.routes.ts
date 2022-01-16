@@ -6,8 +6,7 @@ export const studentsRouter = express.Router()
 studentsRouter.use(express.json())
 
 studentsRouter.get('/', studentsController.findAll)
-
-studentsRouter.put('/', studentsController.create)
+studentsRouter.post('/', studentsController.create)
 
 
 
