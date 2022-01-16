@@ -8,7 +8,9 @@
     "typescript": "4.5.4"
   },
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/app.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/app.ts",
+    "database:up": "docker-compose- up -d",
+    "database:down": "docker-compose- down"
   },
   "dependencies": {
     "@prisma/client": "3.7.0",
