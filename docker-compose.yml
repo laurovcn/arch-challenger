@@ -5,10 +5,13 @@ services:
   node:
     image: "node:16"
     user: "node"
+    container_name: app-arch
     working_dir: /home/node/app
     volumes:
       - ./:/home/node/app
     expose:
+      - "3000"
+    ports:
       - "3000:3000"
     command: "npm run dev"
 
