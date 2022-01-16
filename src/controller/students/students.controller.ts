@@ -6,7 +6,7 @@ import { logService } from '../../service/log.service';
 
   const prisma = new PrismaClient()
 
-export const findAll = async (request: Request, response: Response) => {
+  export const findAll = async (request: Request, response: Response) => {
 
     try {
 
@@ -36,29 +36,38 @@ export const findAll = async (request: Request, response: Response) => {
     }
 }
 
-export const create = async (request: Request, response: Response) => { 
+  export const create = async (request: Request, response: Response) => { 
 
     const data: StudentsInterface = request.body    
     
-    try {      
-      
-      if (data.notes && data.notes.length !== 0) {
+    try {        
 
+      const check = await prisma.students.findUnique({
+        where: {
+          name: data.name
+        }
+      })
+
+      if (check) {
         await prisma.students.update({
+          include:{
+            notes: true
+          },
           where: {
-            name: data.name,
+            name: data.name
           },
           data
         })
-        
-        return response.json(data)
-      }     
 
-       await prisma.students.upsert({ 
-        where:{ name: data.name},
-        create: data,
-        update: data       
-     })       
+        return response.json(data)
+      }
+
+       await prisma.students.create({ 
+        include: {
+          notes: true
+        },      
+        data
+      })     
 
       return response.json(data)
 
@@ -74,4 +83,29 @@ export const create = async (request: Request, response: Response) => {
   }  
 }
 
+export const findOne = async (request: Request, response: Response) => {
 
+  try { 
+
+    const id: string = request.params.id
+
+    return response.json(await prisma.notes.findUnique(
+      {
+        where: {
+          studentsId: Number(id) 
+        }        
+      }
+    )) 
+
+  } catch (error) {
+
+    const data = {
+      description: 'Cannot find at notes'
+    } as LogInterface
+
+    await logService(data)
+
+    return error
+  }
+}
+ 
