@@ -11,13 +11,24 @@ export const findOne = async (request: Request, response: Response) => {
 
     const id: string = request.params.id
 
-    return response.json(await prisma.notes.findUnique(
+    const notes = await prisma.notes.findUnique(
       {
         where: {
           studentsId: Number(id) 
         }        
+      })       
+    
+      if (notes && notes !== null) {         
+        const media: number = ((notes.n1 + notes.n2 + notes.n3 + notes.n4) / 4)        
+        if (media < 4){ 
+          return response.json({Message: 'Aluno reprovado!'})
+        }
+        if (media <= 4 || media < 6 ) {
+          return response.json({Message: 'Aluno em recuperação!'})
+        }
+          return response.json({Message: 'Aluno aprovado!'})
       }
-    )) 
+        return response.json({Message: 'Aluno não cadastrado ou sem notas!'})
 
   } catch (error) {
 

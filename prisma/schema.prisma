@@ -15,10 +15,10 @@ model Students {
 
 model Notes {
   studentsId Int       @unique
-  n1         String
-  n2         String
-  n3         String
-  n4         String
+  n1         Float
+  n2         Float
+  n3         Float
+  n4         Float
   students   Students? @relation(fields: [studentsId], references: [id])
 
 }
