@@ -40,14 +40,25 @@ import { logService } from '../../service/log.service';
 
     const data: StudentsInterface = request.body    
     
-    try {        
+    try {      
       
-       await prisma.students.update({
-        where: {
-          name: data.name,
-        },
-        data
-      })     
+      if (data.notes && data.notes.length !== 0) {
+
+        await prisma.students.update({
+          where: {
+            name: data.name,
+          },
+          data
+        })
+        
+        return response.json(data)
+      }     
+
+       await prisma.students.upsert({ 
+        where:{ name: data.name},
+        create: data,
+        update: data       
+     })       
 
       return response.json(data)
 
