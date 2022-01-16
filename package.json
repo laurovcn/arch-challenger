@@ -3,12 +3,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "16.11.19",
-    "prisma": "3.7.0",
-    "ts-node": "10.4.0",
+    "prisma": "3.7.0",   
+    "ts-node-dev": "^1.1.8",
     "typescript": "4.5.4"
   },
   "scripts": {
-    "dev": "ts-node src/app.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/app.ts"
   },
   "dependencies": {
     "@prisma/client": "3.7.0",

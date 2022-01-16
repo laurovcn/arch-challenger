@@ -8,17 +8,17 @@ datasource db {
 }
 
 model Students {
-  id         Int       @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  notes Notes[]
+}
+
+model Notes {
+  studentsId Int       @unique
   n1         String
   n2         String
   n3         String
   n4         String
-  teachers   Teachers? @relation(fields: [teachersId], references: [id])
-  teachersId Int?
-}
+  students   Students? @relation(fields: [studentsId], references: [id])
 
-model Teachers {
-  id       Int        @id @default(autoincrement())
-  name     String
-  students Students[]
 }
