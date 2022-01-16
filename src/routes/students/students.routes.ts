@@ -7,7 +7,7 @@ studentsRoute.use(express.json())
 
 studentsRoute.get('/', studentsController.findAll)
 
-studentsRoute.put('/', studentsController.create)
+studentsRoute.post('/', studentsController.create)
 
 studentsRoute.get('/:id', studentsController.findOne)
 
