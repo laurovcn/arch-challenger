@@ -21,12 +21,12 @@ export const findOne = async (request: Request, response: Response) => {
       if (notes && notes !== null) {         
         const media: number = ((notes.n1 + notes.n2 + notes.n3 + notes.n4) / 4)        
         if (media < 4){ 
-          return response.json({Message: 'Aluno reprovado!'})
+          return response.json({Message: `Aluno reprovado! Média: ${media}`})
         }
         if (media <= 4 || media < 6 ) {
-          return response.json({Message: 'Aluno em recuperação!'})
+          return response.json({Message: `Aluno em recuperação! Média: ${media}`})
         } 
-          return response.json({Message: 'Aluno aprovado!'})
+          return response.json({Message: `Aluno aprovado! Média: ${media}`})
       }
         return response.json({Message: 'Aluno não cadastrado ou sem notas!'})
 
