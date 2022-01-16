@@ -79,7 +79,7 @@ import { logService } from '../../service/log.service';
 
       await logService(data)
 
-      return error
+      return response.json(error)
   }  
 }
 
@@ -105,7 +105,7 @@ export const findOne = async (request: Request, response: Response) => {
 
     await logService(data)
 
-    return error
+    return response.json(error)
   }
 }
  
