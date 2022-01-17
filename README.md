@@ -1,4 +1,4 @@
-# b9 - challenger
+# Arch - challenger
 
 ## Getting started
 
