@@ -10,10 +10,10 @@ services:
     volumes:
       - ./:/home/node/app
     expose:
-      - "3000"
+      - "3000/tcp"
     ports:
       - "3000:3000"
-    command: "npm run dev"
+    command: "npm run production"
 
   mongo:
     image: mongo

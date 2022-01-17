@@ -3,15 +3,17 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "16.11.19",
-    "prisma": "3.7.0",   
+    "prisma": "3.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "4.5.4"
   },
-  "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/app.ts",
-    "project:up": "docker-compose- up -d",
-    "project:down": "docker-compose- down",
-    "database:sync": "npx prisma db push"
+  "scripts": {  
+    "production": "sh ./initialize.sh",
+    "migrate": "npx prisma db push",
+    "database:sync": "npx prisma db push",    
+    "build": "npx tsc",
+    "start": "ts-node dist/app.js",
+    "project:down": "docker-compose- down"
   },
   "dependencies": {
     "@prisma/client": "3.7.0",
@@ -19,7 +21,8 @@
     "db": "^3.3.1",
     "dotenv": "^12.0.4",
     "express": "^4.17.2",
-    "mongo": "^0.1.0"
+    "mongo": "^0.1.0",
+    "ts-node": "^10.4.0"
   },
   "engines": {
     "node": ">=12.2.0"
