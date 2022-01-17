@@ -8,7 +8,7 @@
     "typescript": "4.5.4"
   },
   "scripts": {
-    "dev": "ts-node-dev src/app.ts",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/app.ts",
     "production": "sh ./initialize.sh",
     "migrate": "npx prisma db push",
     "database:sync": "npx prisma db push",
