@@ -32,7 +32,7 @@ import { logService } from '../../service/log.service';
 
       await logService(data)
 
-      return error
+      return response.json(error)
     }
 }
 
