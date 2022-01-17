@@ -83,29 +83,3 @@ import { logService } from '../../service/log.service';
   }  
 }
 
-export const findOne = async (request: Request, response: Response) => {
-
-  try { 
-
-    const id: string = request.params.id
-
-    return response.json(await prisma.notes.findUnique(
-      {
-        where: {
-          studentsId: Number(id) 
-        }        
-      }
-    )) 
-
-  } catch (error) {
-
-    const data = {
-      description: 'Cannot find at notes'
-    } as LogInterface
-
-    await logService(data)
-
-    return response.json(error)
-  }
-}
- 
